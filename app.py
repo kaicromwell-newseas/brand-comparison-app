@@ -70,15 +70,29 @@ Use clear, friendly tone. Here's the context:
 
     # ---- PROCESS ALL ROWS ----
     results = []
-    with st.spinner("Generating articles... this may take a minute."):
-        for idx, row in df.iterrows():
-            a_summary = scrape_summary(row['brand_a_url'])
-            b_summary = scrape_summary(row['brand_b_url'])
-            article = generate_comparison(row['brand_a_name'], a_summary, row['brand_b_name'], b_summary)
-            results.append({
-                "title": f"{row['brand_a_name']} vs. {row['brand_b_name']}",
-                "content": article
-            })
+with st.spinner("Generating articles... this may take a minute."):
+    for idx, row in df.iterrows():
+        a_summary = scrape_summary(row['brand_a_url'])
+        b_summary = scrape_summary(row['brand_b_url'])
+        try:
+            article = generate_comparison(
+                row['brand_a_name'],
+                a_summary,
+                row['brand_b_name'],
+                b_summary
+            )
+        except Exception as e:
+            article = f"⚠️ Error generating article for 
+{row['brand_a_name']} vs {row['brand_b_name']}: {str(e)}"
+
+        results.append({
+            "title": f"{row['brand_a_name']} vs. {row['brand_b_name']}",
+            "content": article
+        })
+
+# Show results for debugging
+st.write("Generated results:", results)
+
 
     st.success("✅ Done! Scroll down to see the results.")
 
