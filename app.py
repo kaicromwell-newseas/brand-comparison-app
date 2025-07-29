@@ -93,8 +93,7 @@ with st.spinner("Generating articles... this may take a minute."):
                 b_summary
             )
         except Exception as e:
-            article = f"⚠️ Error generating article for 
-{row['brand_a_name']} vs {row['brand_b_name']}: {str(e)}"
+            article = f"⚠️ Error generating article fo {row['brand_a_name']} vs {row['brand_b_name']}: {str(e)}"
 
         results.append({
             "title": f"{row['brand_a_name']} vs. {row['brand_b_name']}",
