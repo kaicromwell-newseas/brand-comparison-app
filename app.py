@@ -35,13 +35,8 @@ if uploaded_file:
             return ""
 
     # ---- PROMPT FUNCTION ----
-    from openai import OpenAI
-
-client = OpenAI()
-
 def generate_comparison(a_name, a_summary, b_name, b_summary):
-    prompt = ""
-Write a comparison article titled: "{a_name} vs. {b_name}".
+    prompt = f"""Write a comparison article titled: "{a_name} vs. {b_name}".
 
 Structure it like this:
 1. Overview of {a_name}
