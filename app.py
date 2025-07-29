@@ -62,6 +62,22 @@ Use clear, friendly tone. Here's the context:
     )
     return response.choices[0].message.content.strip()
 
+    # ---- ARTICLE GENERATION LOOP ----
+    st.subheader("📝 Generated Articles")
+
+    for index, row in df.iterrows():
+        st.markdown(f"### {row['brand_a_name']} vs. {row['brand_b_name']}")
+
+        a_summary = scrape_summary(row['brand_a_url'])
+        b_summary = scrape_summary(row['brand_b_url'])
+
+        try:
+            article = generate_comparison(row['brand_a_name'], a_summary, row['brand_b_name'], b_summary)
+        except Exception as e:
+            article = f"⚠️ Error generating article for {row['brand_a_name']} vs {row['brand_b_name']}: {e}"
+
+        st.markdown(article)
+        st.markdown("---")
 
     # ---- PROCESS ALL ROWS ----
     results = []
