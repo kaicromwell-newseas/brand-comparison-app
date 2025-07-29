@@ -103,8 +103,7 @@ with st.spinner("Generating articles... this may take a minute."):
 # Show results for debugging
 st.write("Generated results:", results)
 
-
-    st.success("✅ Done! Scroll down to see the results.")
+st.success("✅ Done! Scroll down to see the results.")
 
     # ---- DISPLAY RESULTS ----
     for res in results:
