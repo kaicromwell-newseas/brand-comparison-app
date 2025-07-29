@@ -105,7 +105,8 @@ st.write("Generated results:", results)
 
 st.success("✅ Done! Scroll down to see the results.")
 
-    # ---- DISPLAY RESULTS ----
-    for res in results:
-        with st.expander(res["title"]):
-            st.markdown(res["content"])
+for res in results:
+    st.markdown("---")
+    st.subheader(f"{res['brand_a']} vs. {res['brand_b']}")
+    st.write(res["article"])
+
