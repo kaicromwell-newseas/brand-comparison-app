@@ -40,7 +40,7 @@ if uploaded_file:
 client = OpenAI()
 
 def generate_comparison(a_name, a_summary, b_name, b_summary):
-    prompt = f"""
+    prompt = ""
 Write a comparison article titled: "{a_name} vs. {b_name}".
 
 Structure it like this:
